@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const bodyFont = localFont({
+  src: [
+    {
+      path: "../public/brand/fonts/AvengaHaffer-Regular.woff2",
+      weight: "560",
+      style: "normal",
+    },
+    {
+      path: "../public/brand/fonts/AvengaHaffer-Bold.woff2",
+      weight: "730",
+      style: "normal",
+    },
+  ],
+  variable: "--font-body",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const headingFont = localFont({
+  src: [
+    {
+      path: "../public/brand/fonts/AvengaReckless-Headline.woff2",
+      weight: "480",
+      style: "normal",
+    },
+    {
+      path: "../public/brand/fonts/AvengaReckless-Regular.woff2",
+      weight: "450",
+      style: "normal",
+    },
+  ],
+  variable: "--font-heading",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +47,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${bodyFont.variable} ${headingFont.variable} antialiased`}
       >
-        {children}
+        <main className="mx-auto flex min-h-dvh max-w-[1440px] px-10">
+          <div className="bg flex w-60 flex-col items-start border-r pt-10">
+            <img alt="Logo" className="h-6" src="/brand/logo.svg" />
+          </div>
+          <div className="flex-1">{children}</div>
+        </main>
       </body>
     </html>
   );
