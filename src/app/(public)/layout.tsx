@@ -1,17 +1,17 @@
+import "@/app/globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Nav } from "./components/nav";
-import "./globals.css";
+import { Nav } from "../../components/nav";
 
 const bodyFont = localFont({
   src: [
     {
-      path: "../public/brand/fonts/AvengaHaffer-Regular.woff2",
+      path: "../../../public/brand/fonts/AvengaHaffer-Regular.woff2",
       weight: "560",
       style: "normal",
     },
     {
-      path: "../public/brand/fonts/AvengaHaffer-Bold.woff2",
+      path: "../../../public/brand/fonts/AvengaHaffer-Bold.woff2",
       weight: "730",
       style: "normal",
     },
@@ -22,12 +22,12 @@ const bodyFont = localFont({
 const headingFont = localFont({
   src: [
     {
-      path: "../public/brand/fonts/AvengaReckless-Headline.woff2",
+      path: "../../../public/brand/fonts/AvengaReckless-Headline.woff2",
       weight: "480",
       style: "normal",
     },
     {
-      path: "../public/brand/fonts/AvengaReckless-Regular.woff2",
+      path: "../../../public/brand/fonts/AvengaReckless-Regular.woff2",
       weight: "450",
       style: "normal",
     },
