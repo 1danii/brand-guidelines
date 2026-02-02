@@ -51,8 +51,8 @@ export default function RootLayout({
         className={`${bodyFont.variable} ${headingFont.variable} antialiased`}
       >
         <div className="root">
-          <main className="mx-auto flex min-h-dvh max-w-[1440px] px-10">
-            <div className="bg flex w-60 flex-col items-start border-r pt-10">
+          <main className="mx-auto flex min-h-dvh max-w-[1440px] items-start px-10">
+            <div className="sticky top-0 flex min-h-dvh w-60 flex-col items-start border-r pt-10">
               <div className="mb-12">
                 <img alt="Logo" className="h-6" src="/brand/logo.svg" />
               </div>
