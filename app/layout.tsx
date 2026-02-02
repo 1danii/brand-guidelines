@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Nav } from "./components/nav";
 import "./globals.css";
 
 const bodyFont = localFont({
@@ -49,12 +50,18 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${headingFont.variable} antialiased`}
       >
-        <main className="mx-auto flex min-h-dvh max-w-[1440px] px-10">
-          <div className="bg flex w-60 flex-col items-start border-r pt-10">
-            <img alt="Logo" className="h-6" src="/brand/logo.svg" />
-          </div>
-          <div className="flex-1">{children}</div>
-        </main>
+        <div className="root">
+          <main className="mx-auto flex min-h-dvh max-w-[1440px] px-10">
+            <div className="bg flex w-60 flex-col items-start border-r pt-10">
+              <div className="mb-12">
+                <img alt="Logo" className="h-6" src="/brand/logo.svg" />
+              </div>
+
+              <Nav />
+            </div>
+            <div className="flex-1">{children}</div>
+          </main>
+        </div>
       </body>
     </html>
   );

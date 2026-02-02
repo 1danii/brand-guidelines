@@ -5,12 +5,24 @@
   --foreground: #171717;
 } */
 
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
 @theme inline {
   --color-background: #f7f4ed;
   --color-brand: #dd2c00;
   --color-secondary: #fff;
   --font-sans: var(--font-body);
   /* --font-heading: var(--font-heading); */
+}
+
+/* https://base-ui.com/react/overview/quick-start#portals */
+.root {
+  isolation: isolate;
 }
 
 @layer base {
@@ -34,14 +46,9 @@
   font-family: var(--font-heading);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
   background: var(--color-background);
   color: var(--color-brand);
+  /* https://base-ui.com/react/overview/quick-start#ios-26-safari */
+  position: relative;
 }

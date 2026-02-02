@@ -1,4 +1,5 @@
 import { Asset } from "./components/blocks/asset";
+import { Color } from "./components/blocks/color";
 import { Grid } from "./components/blocks/grid";
 import { Heading1, Heading2 } from "./components/blocks/heading";
 import { Image } from "./components/blocks/image";
@@ -36,6 +37,35 @@ export default function Home() {
         <Grid>
           <Asset alt="Logo" src="/brand/logo.svg" />
           <Asset alt="Logo" src="/brand/logo.svg" />
+        </Grid>
+      </Section>
+      <Section>
+        <Grid>
+          <Heading2>Colors</Heading2>
+          <Paragraph>
+            Adipisicing elit commodo adipisicing voluptate aliquip dolor ut. Ad
+            nulla culpa Lorem adipisicing do velit elit enim laborum occaecat
+            do. Cupidatat est consectetur enim deserunt dolore cillum. Et
+            consectetur sit aliquip officia dolore aliqua anim fugiat. Et esse
+            id irure non aliquip culpa enim ad anim non ut ut. Consectetur
+            mollit consectetur et. Sint cillum aute Lorem cillum aliqua qui
+            nostrud aute. Minim laboris laboris ad cillum ex in excepteur
+            consectetur exercitation.
+            <br />
+            <br />
+            Consequat ullamco cillum enim proident eiusmod cillum eu sint labore
+            commodo deserunt non irure et. Nulla Lorem esse velit. Cupidatat
+            aliquip nostrud proident cupidatat ut. Irure consequat nisi eu
+            occaecat sunt tempor proident quis aliquip irure qui voluptate est.
+            Voluptate deserunt commodo veniam occaecat. Amet excepteur dolore
+            aliqua nostrud pariatur eiusmod adipisicing duis et cillum excepteur
+            labore sunt elit occaecat. Et ut et tempor nisi ad laboris eiusmod
+            sint labore dolore in tempor deserunt.
+          </Paragraph>
+        </Grid>
+        <Grid>
+          <Color hex="#dd2c00" />
+          <Color hex="#f7f4ed" />
         </Grid>
       </Section>
       <Section>
