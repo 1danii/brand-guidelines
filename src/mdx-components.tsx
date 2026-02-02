@@ -5,7 +5,6 @@ import { Image } from "@/components/blocks/image";
 import { Paragraph } from "./components/blocks/paragraph";
 
 const components = {
-  // Allows customizing built-in components, e.g. to add styling.
   h1: ({ children }) => <Heading1>{children}</Heading1>,
   h2: ({ children }) => <Heading2>{children}</Heading2>,
   img: (props) => (

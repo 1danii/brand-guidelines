@@ -4,9 +4,9 @@ This project uses **Ultracite**, a zero-config preset that enforces strict code 
 
 ## Quick Reference
 
-- **Format code**: `npm exec -- ultracite fix`
-- **Check for issues**: `npm exec -- ultracite check`
-- **Diagnose setup**: `npm exec -- ultracite doctor`
+- **Format code**: `bun run fix`
+- **Check for issues**: `bun run check`
+- **Diagnose setup**: `bunx ultracite doctor`
 
 Biome (the underlying engine) provides robust linting and formatting. Most issues are automatically fixable.
 
@@ -107,6 +107,11 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 - Don't use `.only` or `.skip` in committed code
 - Keep test suites reasonably flat - avoid excessive `describe` nesting
 
+## Package Manager & Commands
+
+- Always use **bun** instead of npm, yarn, or pnpm
+- Never execute build or dev commands
+
 ## When Biome Can't Help
 
 Biome's linter will catch most issues automatically. Focus your attention on:
@@ -120,4 +125,4 @@ Biome's linter will catch most issues automatically. Focus your attention on:
 
 ---
 
-Most formatting and common issues are automatically fixed by Biome. Run `npm exec -- ultracite fix` before committing to ensure compliance.
+Most formatting and common issues are automatically fixed by Biome. Run `bun run fix` before committing to ensure compliance.

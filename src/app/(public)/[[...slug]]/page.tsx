@@ -53,6 +53,7 @@ export async function generateMetadata({
 
   return {
     title: page.frontmatter.title,
+    description: page.frontmatter.description,
   };
 }
 
@@ -67,7 +68,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <h1 className="sr-only">{page.frontmatter.title}</h1>
+      <Section>
+        <Columns>
+          <Heading1>{page.frontmatter.title}</Heading1>
+          <Paragraph>{page.frontmatter.description}</Paragraph>
+        </Columns>
+      </Section>
       {page.content}
     </>
   );

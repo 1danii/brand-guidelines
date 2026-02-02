@@ -1,19 +1,40 @@
+"use client";
+
 import { Accordion } from "@base-ui/react";
 import { ChevronDownIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { ComponentProps, PropsWithChildren } from "react";
+import type { PageData } from "@/lib/content";
 import { cn } from "../lib/cn";
-import { getAllPages } from "../lib/content";
 
-export async function Nav() {
-  const pages = await getAllPages();
-  const rootIdx = pages.findIndex((page) => page.slug.length === 0);
-  pages.unshift(pages.splice(rootIdx, 1)[0]);
+export function Nav({ pages }: { pages: PageData[] }) {
+  // Move root page (index) to first position
+  const sortedPages = [...pages];
+  const rootIdx = sortedPages.findIndex((page) => page.slug.length === 0);
+  if (rootIdx > 0) {
+    sortedPages.unshift(sortedPages.splice(rootIdx, 1)[0]);
+  }
 
   return (
     <Accordion.Root className="flex flex-col gap-y-4">
-      {pages.map((page) => {
+      {sortedPages.map((page) => {
         const href = page.slug.length === 0 ? "/" : `/${page.slug[0]}`;
         const key = page.slug.length === 0 ? "index" : page.slug[0];
+        const hasHeadings = page.headings.length > 0;
+
+        if (hasHeadings) {
+          return (
+            <NavFolder href={href} key={key} name={page.title}>
+              {page.headings.map((heading) => (
+                <NavFolderItem href={`${href}#${heading.id}`} key={heading.id}>
+                  {heading.value}
+                </NavFolderItem>
+              ))}
+            </NavFolder>
+          );
+        }
+
         return (
           <NavItem href={href} key={key}>
             {page.title}
@@ -29,31 +50,38 @@ const navItemStyles = "font-medium text-sm text-brand";
 function NavItem({
   children,
   href,
-}: Pick<ComponentProps<"a">, "href" | "children">) {
+}: Pick<ComponentProps<typeof Link>, "href" | "children">) {
   return (
-    <a className={navItemStyles} href={href}>
+    <Link className={navItemStyles} href={href}>
       {children}
-    </a>
+    </Link>
   );
 }
+
 function NavFolderItem({
   children,
   href,
-}: Pick<ComponentProps<"a">, "href" | "children">) {
+}: Pick<ComponentProps<typeof Link>, "href" | "children">) {
   return (
-    <a className="text-brand text-sm" href={href}>
+    <Link className="text-brand text-sm" href={href}>
       {children}
-    </a>
+    </Link>
   );
 }
+
 export function NavFolder({
   name,
+  href,
   children,
-}: PropsWithChildren<{ name: string }>) {
+}: PropsWithChildren<{ name: string; href: string }>) {
+  const router = useRouter();
   return (
     <Accordion.Item className="group">
       <Accordion.Header>
-        <Accordion.Trigger className={cn(navItemStyles, "flex items-center")}>
+        <Accordion.Trigger
+          className={cn(navItemStyles, "flex items-center")}
+          onClick={() => router.push(href)}
+        >
           {name}
           <ChevronDownIcon className="ml-2 size-4 transition-transform duration-300 ease-in-out group-data-closed:-rotate-90" />
         </Accordion.Trigger>
