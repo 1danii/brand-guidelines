@@ -1,9 +1,9 @@
+import slugify from "@sindresorhus/slugify";
 import type { ComponentProps, ReactNode } from "react";
-import slugify from "slugify";
 
 function getHeadingId(children: ReactNode): string | undefined {
   if (typeof children === "string") {
-    return slugify(children, { lower: true, strict: true });
+    return slugify(children);
   }
   return undefined;
 }
