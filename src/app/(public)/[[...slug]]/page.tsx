@@ -66,15 +66,5 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  return (
-    <>
-      <Section>
-        <Columns>
-          <Heading1>{page.frontmatter.title}</Heading1>
-          <Paragraph>{page.frontmatter.description}</Paragraph>
-        </Columns>
-      </Section>
-      {page.content}
-    </>
-  );
+  return page.content;
 }

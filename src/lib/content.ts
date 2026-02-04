@@ -5,6 +5,7 @@ import { Glob } from "bun";
 import type { MDXComponents } from "mdx/types";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypeUnwrapImages from "rehype-unwrap-images";
+import { rehypeSections } from "./rehype-sections";
 
 const CONTENT_DIR = join(process.cwd(), "content");
 const MDX_EXTENSION = ".mdx";
@@ -131,13 +132,23 @@ export async function getPageBySlug(
 
   const source = await bunFile.text();
 
-  // Use next-mdx-remote's built-in frontmatter parsing
-  const { content, frontmatter } = await compileMDX<PageFrontmatter>({
+  // First, parse frontmatter to get the data for the sections plugin
+  const { frontmatter } = await compileMDX<PageFrontmatter>({
+    source,
+    options: { parseFrontmatter: true },
+  });
+
+  // Now compile with the sections plugin using the parsed frontmatter
+  const { content } = await compileMDX<PageFrontmatter>({
     source,
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        rehypePlugins: [rehypeExtractToc, rehypeUnwrapImages],
+        rehypePlugins: [
+          rehypeExtractToc,
+          rehypeUnwrapImages,
+          [rehypeSections, { frontmatter }],
+        ],
       },
     },
     components,
